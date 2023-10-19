@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+
+    "experimentalDecorators": true,
+    "downlevelIteration": true,
+
+    "lib": ["es2020"],
+
+    "strict": true,
+
+    "rootDir": "./src",
+    "baseUrl": "./node_modules",
+
+    "outDir": "./lib",
+
+    "sourceMap": true
+  },
+
+  "include": ["src/**/*"],
+  "exclude": ["src/**/*.spec.ts"]
+}
