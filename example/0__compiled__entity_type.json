@@ -1,0 +1,24 @@
+{"entity_type": [{
+  "id": "foo",
+  "name": "Foo entity",
+  "attributes": {
+    "up": 4,
+    "sideways": 11,
+    "purple": 16
+  },
+  "list": [
+    {
+      "value": "one"
+    },
+    {
+      "value": "two"
+    },
+    {
+      "value": "three!"
+    },
+    {
+      "value": "four"
+    }
+  ]
+}
+]}

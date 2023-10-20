@@ -1,0 +1,15 @@
+{
+  "entity_type": [
+    {
+      "id": "foo",
+      "attributes$add": {
+        "purple": 16
+      },
+      "list$listedit": {
+        "2$dictedit": {
+          "value$postfix": "!"
+        }
+      }
+    }
+  ]
+}
