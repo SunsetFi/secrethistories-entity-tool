@@ -1,4 +1,4 @@
-import { JSONPath, Location } from "jsonc-parser";
+import { JSONPath } from "jsonc-parser";
 import { JsonArray, JsonObject } from "type-fest";
 import { mapValues, omit } from "lodash";
 
@@ -18,6 +18,14 @@ export function getLocation<T extends JsonArray | JsonObject>(
   parsed: LocationAware<T>
 ): LocationData {
   return (parsed as any)[LocationData] as LocationData;
+}
+
+export function setLocation<T extends JsonArray | JsonObject>(
+  obj: T,
+  location: LocationData
+): LocationAware<T> {
+  (obj as any)[LocationData] = location;
+  return obj as any;
 }
 
 export function stripLocation<T extends JsonArray | JsonObject>(

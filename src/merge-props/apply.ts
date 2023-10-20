@@ -1,8 +1,6 @@
 import { ParsedJsonValue, clone } from "../parser";
-import { isJsonArray, isJsonObject } from "../types";
 
-import { MergeSource, MergeTarget } from "./types";
-import { fail } from "./validation";
+import { MergeResult, MergeSource, MergeTarget } from "./types";
 
 import mergeOperators from "./operators";
 
@@ -22,15 +20,15 @@ export function applyMergeProps(
       continue;
     }
 
-    const targetValue = newValue[keyName];
-    if (!isJsonObject(targetValue) && !isJsonArray(targetValue)) {
-      fail(`Cannot apply merge operation to non-object/array.`);
+    const mergeValue = executeMergeOperation(
+      mergeOp,
+      newValue[keyName],
+      merge[key]
+    );
+    if (mergeValue === undefined) {
+      delete newValue[keyName];
     } else {
-      newValue[keyName] = executeMergeOperation(
-        mergeOp,
-        newValue[keyName],
-        merge[key]
-      );
+      newValue[keyName] = mergeValue;
     }
   }
 
@@ -41,7 +39,7 @@ function executeMergeOperation(
   opKey: string,
   input: MergeTarget,
   mergeValue: ParsedJsonValue
-): MergeTarget {
+): MergeResult {
   const op = mergeOperators.find((x) => x.modifier === opKey);
   if (!op) {
     throw new Error(`Unknown merge operation: ${opKey}`);

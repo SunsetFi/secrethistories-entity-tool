@@ -1,8 +1,8 @@
-import { JsonArray, JsonPrimitive } from "type-fest";
+import { JsonPrimitive, JsonValue } from "type-fest";
 
 import { LocationAware } from "./location";
 
-export type ParsedJsonArray = LocationAware<JsonArray>;
+export type ParsedJsonArray = LocationAware<JsonValue[]>;
 export type ParsedJsonObject = LocationAware<{
   [Key in string]: ParsedJsonValue;
 }>;

@@ -1,4 +1,3 @@
-import { clone } from "../../parser";
 import { isJsonObject } from "../../types";
 
 import { MergeOperation } from "../types";
@@ -8,15 +7,15 @@ import { ensure } from "../validation";
 const addOp: MergeOperation = {
   modifier: "add",
   operate(target, merge) {
-    ensure(isJsonObject(target), `$add can only target objects and arrays.`);
+    ensure(isJsonObject(target), `$add can only target objects.`);
     ensure(isJsonObject(merge), `The parameter for $add must be an object.`);
 
-    target = clone(target);
+    const newTarget = { ...target };
     for (const key of Object.keys(merge)) {
-      target[key] = merge[key];
+      newTarget[key] = merge[key];
     }
 
-    return target;
+    return newTarget;
   },
 };
 
